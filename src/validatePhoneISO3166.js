@@ -12,7 +12,7 @@
  * @returns {*|boolean}
  */
 module.exports = function validatePhoneISO3166(phone, iso3166, allowLandline, plusSign) {
-	if (!allowLandline && !iso3166.mobile_number_lengths) {
+	if (!iso3166.mobile_number_lengths) {
 		return false;
 	}
 
@@ -26,6 +26,10 @@ module.exports = function validatePhoneISO3166(phone, iso3166, allowLandline, pl
 		return false;
 	}
 
+	if (allowLandline) {
+		return true;
+	}
+
 	const mobile_number_lengths = iso3166.mobile_number_lengths;
 	const mobile_begin_with = iso3166.mobile_begin_with;
 
@@ -35,5 +39,5 @@ module.exports = function validatePhoneISO3166(phone, iso3166, allowLandline, pl
 	mobile_begin_with.some(beginWith => phoneWithoutCountry.match(new RegExp('^' + beginWith))):
 	true;
 
-	return isLengthValid && (allowLandline || isBeginWithValid);
+	return isLengthValid && isBeginWithValid;
 };

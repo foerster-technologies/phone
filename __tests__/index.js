@@ -1427,3 +1427,13 @@ describe('#190 phone number with plus sign BUT without country code (intentional
 		expect(phone(number)).toEqual(result);
 	});
 });
+
+
+describe('Handle short land lines', () => {
+	test('1. Shorter land line', () => {
+		const number = '011111111';
+		const country = 'DEU';
+		const result = ['+4911111111', 'DEU'];
+		expect(phone(number, country, true)).toEqual(result);
+	});
+});

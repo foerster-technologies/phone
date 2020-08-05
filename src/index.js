@@ -40,8 +40,11 @@ module.exports = function (phone, country, allowLandline) {
 	let defaultCountry = false;
 
 	if (formatCountry) {
+
+		let hasZero = formatPhone.charAt(0) === '0';
+
 		// remove leading 0s for all countries except 'CIV', 'COG'
-		if (['CIV', 'COG'].indexOf(iso3166.alpha3) === -1) {
+		if (['CIV', 'COG'].indexOf(iso3166.alpha3) === -1 && hasZero) {
 			formatPhone = formatPhone.replace(/^0+/, '');
 		}
 
@@ -50,7 +53,9 @@ module.exports = function (phone, country, allowLandline) {
 			formatPhone = formatPhone.replace(/^8+/, '');
 		}
 
-		if (!plusSign && iso3166.mobile_number_lengths.indexOf(formatPhone.length) !== -1) {
+		if ((!plusSign && (iso3166.mobile_number_lengths.indexOf(formatPhone.length) !== -1)) ||
+			allowLandline && hasZero
+		) {
 			formatPhone = iso3166.country_code + formatPhone;
 			// C: have country, no plus sign --->
 			//	case 1
