@@ -1436,4 +1436,18 @@ describe('Handle short land lines', () => {
 		const result = ['+4911111111', 'DEU'];
 		expect(phone(number, country, true)).toEqual(result);
 	});
+
+	test('2. Short land line with country prefix', () => {
+		const number = '49 011 011 ';
+		const country = 'DEU';
+		const result = ['+49011011', 'DEU'];
+		expect(phone(number, country, true)).toEqual(result);
+	});
+
+	test('3. Short land line with leading 0', () => {
+		const number = '049 1234';
+		const country = 'DEU';
+		const result = ['+49491234', 'DEU'];
+		expect(phone(number, country, true)).toEqual(result);
+	});
 });
