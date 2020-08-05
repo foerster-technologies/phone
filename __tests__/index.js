@@ -1,6 +1,6 @@
 'use strict';
 
-const phone = require('../lib/index');
+const phone = require('../src/index');
 
 /* suggest 10 test case for each country, except USA
 

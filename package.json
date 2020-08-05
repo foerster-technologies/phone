@@ -1,13 +1,13 @@
 {
-  "name": "phone",
-  "version": "2.4.14",
+  "name": "@foerster-technologies/phonenumbers",
+  "version": "1.0.0",
   "description": "With a given country and phone number, validate and format the phone number to E.164 standard",
   "main": "./dist/index.js",
   "engines": {
     "node": ">=6.10.0"
   },
   "directories": {
-    "lib": "./lib"
+    "example": "example"
   },
   "scripts": {
     "test": "jest && codecov",
@@ -21,10 +21,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/aftership/phone"
+    "url": "git+https://github.com/foerster-technologies/phone.git"
   },
   "bugs": {
-    "url": "https://github.com/aftership/phone/issues"
+    "url": "https://github.com/foerster-technologies/phone/issues"
   },
   "devDependencies": {
     "@types/node": "^14.0.26",
@@ -53,10 +53,12 @@
     "phone",
     "e.164"
   ],
-  "author": "AfterShip",
+  "author": "foerster-technologies",
   "license": "MIT",
   "jest": {
     "coverageDirectory": "./coverage/",
     "collectCoverage": true
-  }
+  },
+  "homepage": "https://github.com/foerster-technologies/phonenumbers#readme",
+  "dependencies": {}
 }

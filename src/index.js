@@ -50,7 +50,7 @@ module.exports = function (phone, country, allowLandline) {
 			formatPhone = formatPhone.replace(/^8+/, '');
 		}
 
-		if (!plusSign && iso3166.phone_number_lengths.indexOf(formatPhone.length) !== -1) {
+		if (!plusSign && iso3166.mobile_number_lengths.indexOf(formatPhone.length) !== -1) {
 			formatPhone = iso3166.country_code + formatPhone;
 			// C: have country, no plus sign --->
 			//	case 1
@@ -80,7 +80,7 @@ module.exports = function (phone, country, allowLandline) {
 				iso3166 = {};
 			}
 		}
-	} else if (iso3166.phone_number_lengths.indexOf(formatPhone.length) !== -1) {
+	} else if (iso3166.mobile_number_lengths.indexOf(formatPhone.length) !== -1) {
 		// B: no country, no plus sign --> treat it as USA
 		// 1. check length if == 11, or 10, if 10, add +1, then go go D
 		// no plus sign, no country is given. then it must be USA

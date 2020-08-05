@@ -16,7 +16,7 @@ import * as path from 'path';
 
 const errors: IStackDriverError[] = require('./stackdriver/errors.json');
 const error_phone_array: string[] = require('./stackdriver/error_list.json');
-const iso3166s: Iiso3166[] = require('../../lib/iso3166Data');
+const iso3166s: Iiso3166[] = require('../../src/iso3166Data');
 const client = require('twilio')(accountSid, authToken);
 
 ~async function() {
@@ -57,12 +57,12 @@ const client = require('twilio')(accountSid, authToken);
             alpha2,
             country_code,
             mobile_begin_with,
-            phone_number_lengths,
+            mobile_number_lengths,
         } = matched_item;
         const localPhoneNumber = phoneNumber.replace('+' + country_code, '');
         const isBeginWithRight = mobile_begin_with.length === 0 || mobile_begin_with.some(num => new RegExp(`^${num}`).test(localPhoneNumber));
         const new_mobile_begin_with = isBeginWithRight ? mobile_begin_with: mobile_begin_with.concat(localPhoneNumber.slice(0, mobile_begin_with[0].length));
-        const new_phone_number_lengths = [...new Set(phone_number_lengths.concat(localPhoneNumber.length))];
+        const new_mobile_number_lengths = [...new Set(mobile_number_lengths.concat(localPhoneNumber.length))];
         
         const sum_alpha2 = sum[alpha2];
         return {
@@ -75,12 +75,12 @@ const client = require('twilio')(accountSid, authToken);
                         ...sum_alpha2.mobile_begin_with
                     ])] : 
                     new_mobile_begin_with,
-                phone_number_lengths: sum_alpha2 ?
+                mobile_number_lengths: sum_alpha2 ?
                     [...new Set([
-                        ...new_phone_number_lengths,
-                        ...sum_alpha2.phone_number_lengths,
+                        ...new_mobile_number_lengths,
+                        ...sum_alpha2.mobile_number_lengths,
                     ])] : 
-                    new_phone_number_lengths
+                    new_mobile_number_lengths
             }
         };
     }, {});

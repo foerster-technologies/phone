@@ -14,5 +14,5 @@ export interface Iiso3166 {
     alpha2: string;
     country_code: string;
     mobile_begin_with: string[];
-    phone_number_lengths: number[];
+    mobile_number_lengths: number[];
 }

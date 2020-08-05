@@ -1,7 +1,10 @@
-# Phone &middot; [![Build Status](https://travis-ci.org/AfterShip/phone.svg?branch=v2)](https://travis-ci.org/AfterShip/phone) [![codecov](https://codecov.io/gh/AfterShip/phone/branch/master/graph/badge.svg)](https://codecov.io/gh/AfterShip/phone) [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
+# Phone &middot; [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 
-## What is phone?
-`phone` is used to normalize mobile phone numbers into E.164 format.
+## What is phonenumbers?
+
+This is a fork of the phone package.
+
+`phonenumber` is used to normalize mobile and **land line phone** numbers into E.164 format.
 
 A common problem is that users normally input phone numbers in this way:
 
@@ -31,11 +34,11 @@ yarn add phone
 
 ## Demo
 
-[Try it on CodeSandbox](https://codesandbox.io/s/phone-browser-example-react-o5vt5?file=/src/App.js)
+From `phone` [Try it on CodeSandbox](https://codesandbox.io/s/phone-browser-example-react-o5vt5?file=/src/App.js)
 
 ## Usage
 ```javascript
-const phone = require('phone');
+const phone = require('phonenumbers');
 
 phone('+852 6569-8900'); // return ['+85265698900', 'HKG']
 phone('+1(817) 569-8900', ''); // return ['+18175698900', 'USA']
@@ -70,7 +73,7 @@ phone('+(852) 0356-4902', '', true); // return [ '+85203564902', 'HKG' ], even t
 ## API
 
 ```javascript
-const phone = require('phone');
+const phone = require('phonenumbers');
 ```
 
 ### `phone(phone: String, [country: string, allowLandline: Boolean]): Array`
@@ -119,13 +122,13 @@ You may need polyfills for some older browsers; for more details, please read th
 
 ## FAQ
 
-1. Does `phone` do any logical validation?
+1. Does `phonenumber` do any logical validation?
 
 	Yes. If you provide the 2nd parameter (country), and the phone number does not start with `+` sign.
 
-	`phone` will validate `phone_number_lengths` and `mobile_begin_with`
+	`phonenumber` will validate `mobile_number_lengths` and `mobile_begin_with`
 
-2. Why is `phone` returning null for a valid phone number?
+2. Why is `phonenumber` returning null for a valid phone number?
 
 	By default, the function will validate a mobile phone number only, to validate a landline phone number, please set 3rd parameter `allowLandline` to true.
 
@@ -133,7 +136,8 @@ You may need polyfills for some older browsers; for more details, please read th
 
 3. How does `allowLandline` work?
 	
-	Mobile phone number detection is achieved by comparing the beginning digits of a phone number to a list of possible mobile prefixes for a country. In some countries, some or all of these prefixes are the same for both mobile phones and landlines; when `allowLandline` is set to `false` you should not assume that all possible landline phone numbers will be reliably filtered out.
+	Mobile phone number detection is achieved by comparing the beginning digits of a phone number to a list of possible mobile prefixes for a country. 
+	In some countries, some or all of these prefixes are the same for both mobile phones and landlines; when `allowLandline` is set to `false` you should not assume that all possible landline phone numbers will be reliably filtered out.
 
 
 ## Help
