@@ -23,13 +23,13 @@ We always want:
 
 ## Install
 ```
-npm install phone
+npm install @foerster-technologies/phonenumbers
 ```
 
 or
 
 ```
-yarn add phone
+yarn add @foerster-technologies/phonenumbers
 ```
 
 ## Demo
@@ -37,9 +37,16 @@ yarn add phone
 From `phone` [Try it on CodeSandbox](https://codesandbox.io/s/phone-browser-example-react-o5vt5?file=/src/App.js)
 
 ## Usage
-```javascript
-const phone = require('phonenumbers');
 
+Typescript
+```typescript
+import * as phone from '@foerster-technologies/phonenumbers';
+```
+Javascript
+```javascript
+const phone = require('@foerster-technologies/phonenumbers');
+```
+```javascript
 phone('+852 6569-8900'); // return ['+85265698900', 'HKG']
 phone('+1(817) 569-8900', ''); // return ['+18175698900', 'USA']
 phone('(817) 569-8900', 'USA'); // return ['+18175698900', 'USA']
@@ -73,7 +80,11 @@ phone('+(852) 0356-4902', '', true); // return [ '+85203564902', 'HKG' ], even t
 ## API
 
 ```javascript
-const phone = require('phonenumbers');
+// TS
+import * as phone from '@foerster-technologies/phonenumbers';
+
+// JS
+const phone = require('@foerster-technologies/phonenumbers');
 ```
 
 ### `phone(phone: String, [country: string, allowLandline: Boolean]): Array`
@@ -84,7 +95,7 @@ Parameter | Type | Required | Description
 --- | --- | --- | ---
 phone | String | Yes | The phone number text you want to process
 country | String | No | Provided country code in iso-3166 alpha 2 or 3 format
-allowLandLine | Boolean | No | Set to true if you want to skip phone number initial digit checking
+allowLandLine | Boolean | No | Set to true if you want to skip phone number initial digit checking and disable length checks
 
 #### Returns
 
